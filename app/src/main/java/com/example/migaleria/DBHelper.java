@@ -60,4 +60,10 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return listaFotos;
     }
+
+    public void eliminarFoto(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_FOTOS, COLUMN_ID + " =?",
+                new String[]{String.valueOf(id)});
+    }
 }
