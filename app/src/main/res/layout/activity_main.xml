@@ -45,4 +45,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="8dp" />
 
+    <Button
+        android:id="@+id/galeriaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver galería"
+        app:layout_constraintBottom_toTopOf="@id/switchCameraButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
