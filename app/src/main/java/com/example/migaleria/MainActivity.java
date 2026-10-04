@@ -128,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED) {
                 obtenerUbicacion();
+            } else {
+                latitudActual = 0;
+                longitudActual = 0;
+                tomarFoto();
             }
         }
     }
@@ -201,7 +205,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void obtenerUbicacion() {
         if (!tienePermisoUbicacion()) {
-            pedirPermisoUbicacion();
+            latitudActual = 0;
+            longitudActual = 0;
+            tomarFoto();
             return;
         }
 
@@ -209,6 +215,10 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            latitudActual = 0;
+            longitudActual = 0;
+            tomarFoto();
             return;
         }
 
@@ -218,12 +228,11 @@ public class MainActivity extends AppCompatActivity {
             if (location != null) {
                 latitudActual = location.getLatitude();
                 longitudActual = location.getLongitude();
-                tomarFoto();
-
             } else {
-                Toast.makeText(this, "No se ha podido obtener la ubicación",
-                        Toast.LENGTH_SHORT).show();
+                latitudActual = 0;
+                longitudActual = 0;
             }
+            tomarFoto();
         });
     }
 }

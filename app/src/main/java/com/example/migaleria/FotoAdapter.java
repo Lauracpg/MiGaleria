@@ -37,8 +37,13 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoViewHolder
         Foto foto = listaFotos.get(position);
         holder.imagenFoto.setImageURI(Uri.parse(foto.getRuta()));
         holder.textoFecha.setText(foto.getFecha());
-        String ubicacion = foto.getLatitud() + ", " + foto.getLongitud();
-        holder.textoUbicacion.setText(ubicacion);
+
+        if (foto.getLatitud() == 0 && foto.getLongitud() == 0) {
+            holder.textoUbicacion.setText("");
+        } else {
+            String ubicacion = foto.getLatitud() + ", " + foto.getLongitud();
+            holder.textoUbicacion.setText(ubicacion);
+        }
 
         if (position == posicionSeleccionada) {
             holder.itemFoto.setBackgroundColor(Color.LTGRAY);
