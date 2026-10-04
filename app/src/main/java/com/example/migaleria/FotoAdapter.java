@@ -38,11 +38,11 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoViewHolder
         holder.imagenFoto.setImageURI(Uri.parse(foto.getRuta()));
         holder.textoFecha.setText(foto.getFecha());
 
-        if (foto.getLatitud() == 0 && foto.getLongitud() == 0) {
-            holder.textoUbicacion.setText("");
-        } else {
+        if (foto.tieneUbicacion()) {
             String ubicacion = foto.getLatitud() + ", " + foto.getLongitud();
             holder.textoUbicacion.setText(ubicacion);
+        } else {
+            holder.textoUbicacion.setText("");
         }
 
         if (position == posicionSeleccionada) {

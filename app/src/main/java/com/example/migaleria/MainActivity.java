@@ -205,9 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void obtenerUbicacion() {
         if (!tienePermisoUbicacion()) {
-            latitudActual = 0;
-            longitudActual = 0;
-            tomarFoto();
+            pedirPermisoUbicacion();
             return;
         }
 

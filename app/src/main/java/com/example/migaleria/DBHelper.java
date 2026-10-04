@@ -54,7 +54,13 @@ public class DBHelper extends SQLiteOpenHelper {
             double latitud = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_LATITUD));
             double longitud = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_LONGITUD));
 
-            Foto foto = new Foto(id, fecha, ruta, latitud, longitud);
+            Foto foto;
+            if (latitud == 0 && longitud == 0) {
+                foto = new FotoSinUbicacion(id, fecha, ruta, latitud, longitud);
+            } else {
+                foto = new FotoConUbicacion(id, fecha, ruta, latitud, longitud);
+            }
+
             listaFotos.add(foto);
         }
         cursor.close();

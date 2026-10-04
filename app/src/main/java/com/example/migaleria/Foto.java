@@ -34,4 +34,7 @@ public class Foto {
     public double getLongitud() {
         return longitud;
     }
+    public boolean tieneUbicacion() {
+        return false;
+    }
 }
