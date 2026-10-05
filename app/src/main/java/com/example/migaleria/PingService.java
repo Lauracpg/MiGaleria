@@ -2,6 +2,7 @@ package com.example.migaleria;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 
 import java.net.InetAddress;
@@ -9,6 +10,8 @@ import java.net.InetAddress;
 public class PingService extends Service {
     private boolean ejecutando = false;
     private PingListener listener;
+    private Thread hilo;
+    private final IBinder binder = new LocalBinder();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -19,7 +22,7 @@ public class PingService extends Service {
 
     private void ejecutarPings(int numIntentos) {
         ejecutando = true;
-        Thread hilo = new Thread(() -> {
+        hilo = new Thread(() -> {
             int exitos = 0;
             int fallos = 0;
             int intento = 1;
@@ -67,11 +70,24 @@ public class PingService extends Service {
 
     public void pararPing() {
         ejecutando = false;
+        if (hilo != null) {
+            hilo.interrupt();
+        }
+    }
+
+    public boolean estaEjecutando() {
+        return ejecutando;
+    }
+
+    public class LocalBinder extends Binder {
+        public PingService obtenerServicio() {
+            return PingService.this;
+        }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
     }
 
     public interface PingListener {

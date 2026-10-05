@@ -1,16 +1,21 @@
 package com.example.migaleria;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,12 +49,18 @@ public class MainActivity extends AppCompatActivity {
     private boolean camaraFrontal = false;
     private static final int REQUEST_CAMERA_PERMISSION = 100;
     private static final int REQUEST_LOCATION_PERMISSION = 101;
+    private PingService pingService;
+    private boolean servicioConectado = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intentServicio = new Intent(this, PingService.class);
+        bindService(intentServicio, conexionServicio, BIND_AUTO_CREATE);
+
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.BLACK);
         getWindow().getDecorView().setSystemUiVisibility(0);
@@ -94,9 +105,72 @@ public class MainActivity extends AppCompatActivity {
 
     private void mostrarDialogoPing() {
         View vista = getLayoutInflater().inflate(R.layout.dialog_ping, null);
+        EditText numIntentos = vista.findViewById(R.id.numeroIntentos);
+        Button btnIniciarPing = vista.findViewById(R.id.botonIniciarPing);
+        Button botonPararPing = vista.findViewById(R.id.botonPararPing);
+        TextView txtResultadoPing = vista.findViewById(R.id.textoResultadoPing);
+
         AlertDialog dialogo = new AlertDialog.Builder(this)
                 .setView(vista).create();
 
+        btnIniciarPing.setOnClickListener(v -> {
+            String texto = numIntentos.getText().toString();
+            if (texto.isEmpty()) {
+                numIntentos.setError("Introduce un número");
+                return;
+            }
+
+            int intentos = Integer.parseInt(texto);
+            if (intentos <= 0) {
+                numIntentos.setError("Debe ser mayor que 0");
+                return;
+            }
+
+            if (!servicioConectado) {
+                txtResultadoPing.setText("El servicio no está conectado");
+                return;
+            }
+
+            if (pingService.estaEjecutando()) {
+                txtResultadoPing.setText("Ya hay un PING en ejecución");
+                return;
+            }
+
+            txtResultadoPing.setText("Realizando PING...");
+            pingService.setListener(new PingService.PingListener() {
+                @Override
+                public void resultadoPing(int intento, boolean exito) {
+                    runOnUiThread(() -> {
+                        if (exito) {
+                            txtResultadoPing.append("\nPING " + intento + " correcto");
+                        } else {
+                            txtResultadoPing.append("\nPING " + intento + ": fallo");
+                        }
+                    });
+                }
+
+                @Override
+                public void pingsFinalizados(int exitos, int fallos) {
+                    runOnUiThread(() -> {
+                        txtResultadoPing.append(
+                                "\n\nFinalizado." +
+                                "\nÉxitos: " + exitos +
+                                "\nFallos: " + fallos);
+                    });
+                }
+            });
+
+            Intent intentPing = new Intent(MainActivity.this, PingService.class);
+            intentPing.putExtra("numIntentos", intentos);
+            startService(intentPing);
+        });
+
+        botonPararPing.setOnClickListener(v -> {
+            if (servicioConectado && pingService != null) {
+                pingService.pararPing();
+                txtResultadoPing.append("\n\nPING detenido.");
+            }
+        });
         dialogo.show();
     }
 
@@ -248,4 +322,19 @@ public class MainActivity extends AppCompatActivity {
             tomarFoto();
         });
     }
+
+    private ServiceConnection conexionServicio = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            PingService.LocalBinder binder = (PingService.LocalBinder) service;
+            pingService = binder.obtenerServicio();
+            servicioConectado = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            pingService = null;
+            servicioConectado = false;
+        }
+    };
 }
