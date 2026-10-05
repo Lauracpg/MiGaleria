@@ -20,63 +20,89 @@
     <View
         android:id="@+id/bottomBackground"
         android:layout_width="0dp"
-        android:layout_height="290dp"
+        android:layout_height="300dp"
         android:background="@color/app_background"
         android:alpha="0.92"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <TextView
+        android:id="@+id/tituloControles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MiGaleria"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/pingButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/pingButton"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_width="190dp"
+        android:layout_height="44dp"
         android:text="PING"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@id/galeriaButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="7dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/galeriaButton"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_width="190dp"
+        android:layout_height="44dp"
         android:text="Ver galería"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@id/switchCameraButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="7dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/switchCameraButton"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_width="190dp"
+        android:layout_height="44dp"
         android:text="Cambiar cámara"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@id/captureButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="7dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/captureButton"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
         android:text="Hacer foto"
         android:textColor="@android:color/white"
         android:textSize="15sp"
+        android:textStyle="bold"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="45dp" />
+        android:layout_marginBottom="38dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

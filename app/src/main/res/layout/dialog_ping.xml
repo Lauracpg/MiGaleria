@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PING a google.com"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textColor="@android:color/black"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Introduce el número de intentos"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp" />
 
     <EditText
         android:id="@+id/numeroIntentos"
@@ -18,46 +30,59 @@
         android:layout_height="wrap_content"
         android:hint="Número de intentos"
         android:inputType="number"
-        android:layout_marginTop="16dp" />
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginTop="14dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/botonIniciarPing"
         android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_height="46dp"
         android:text="Iniciar"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="18dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/botonPararPing"
         android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_height="46dp"
         android:text="Parar"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/botonCerrarPing"
         android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_height="46dp"
         android:text="Cerrar"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:backgroundTint="@android:color/black"
+        android:padding="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:cornerRadius="18dp"
+        app:strokeWidth="0dp" />
 
     <TextView
         android:id="@+id/textoResultadoPing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:layout_marginTop="16dp" />
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>
