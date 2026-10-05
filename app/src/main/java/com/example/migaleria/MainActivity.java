@@ -9,10 +9,12 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
@@ -73,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button pingButton = findViewById(R.id.pingButton);
+        pingButton.setOnClickListener(v -> {
+            mostrarDialogoPing();
+        });
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED) {
 
@@ -83,6 +90,14 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.CAMERA},
                     REQUEST_CAMERA_PERMISSION);
         }
+    }
+
+    private void mostrarDialogoPing() {
+        View vista = getLayoutInflater().inflate(R.layout.dialog_ping, null);
+        AlertDialog dialogo = new AlertDialog.Builder(this)
+                .setView(vista).create();
+
+        dialogo.show();
     }
 
     private void iniciarCamara() {

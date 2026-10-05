@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PING a google.com"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/numeroIntentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número de intentos"
+        android:inputType="number"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/botonIniciarPing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/botonPararPing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parar"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/textoResultadoPing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
