@@ -22,16 +22,35 @@
 
     <Button
         android:id="@+id/botonIniciarPing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="Iniciar"
-        android:layout_marginTop="12dp" />
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:backgroundTint="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/botonPararPing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="Parar"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:backgroundTint="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/botonCerrarPing"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="Cerrar"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:backgroundTint="@android:color/black"
+        android:layout_gravity="center"
         android:layout_marginTop="8dp" />
 
     <TextView

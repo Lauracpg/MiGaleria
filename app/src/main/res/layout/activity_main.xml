@@ -20,7 +20,7 @@
     <View
         android:id="@+id/bottomBackground"
         android:layout_width="0dp"
-        android:layout_height="230dp"
+        android:layout_height="290dp"
         android:background="@color/app_background"
         android:alpha="0.92"
         app:layout_constraintBottom_toBottomOf="parent"

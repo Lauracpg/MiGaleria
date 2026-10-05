@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         EditText numIntentos = vista.findViewById(R.id.numeroIntentos);
         Button btnIniciarPing = vista.findViewById(R.id.botonIniciarPing);
         Button botonPararPing = vista.findViewById(R.id.botonPararPing);
+        Button btnCerrarPing = vista.findViewById(R.id.botonCerrarPing);
         TextView txtResultadoPing = vista.findViewById(R.id.textoResultadoPing);
 
         AlertDialog dialogo = new AlertDialog.Builder(this)
@@ -171,6 +172,11 @@ public class MainActivity extends AppCompatActivity {
                 txtResultadoPing.append("\n\nPING detenido.");
             }
         });
+
+        btnCerrarPing.setOnClickListener(v -> {
+            dialogo.dismiss();
+        });
+
         dialogo.show();
     }
 
