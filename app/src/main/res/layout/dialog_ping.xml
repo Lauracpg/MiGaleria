@@ -45,6 +45,10 @@
         android:padding="0dp"
         android:layout_gravity="center"
         android:layout_marginTop="18dp"
+        app:icon="@drawable/ic_play"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/white"
         app:cornerRadius="18dp"
         app:strokeWidth="0dp" />
 
@@ -59,6 +63,10 @@
         android:padding="0dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
+        app:icon="@drawable/ic_stop"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/white"
         app:cornerRadius="18dp"
         app:strokeWidth="0dp" />
 
@@ -73,6 +81,10 @@
         android:padding="0dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
+        app:icon="@drawable/ic_close"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/white"
         app:cornerRadius="18dp"
         app:strokeWidth="0dp" />
 
