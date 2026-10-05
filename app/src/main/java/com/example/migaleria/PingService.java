@@ -53,7 +53,6 @@ public class PingService extends Service {
             if (listener != null) {
                 listener.pingsFinalizados(exitos, fallos);
             }
-
             stopSelf();
         });
         hilo.start();
@@ -98,4 +97,5 @@ public class PingService extends Service {
     public void setListener(PingListener listener) {
         this.listener = listener;
     }
+
 }

@@ -59,7 +59,6 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoViewHolder
                 galeriaActivity.seleccionarFoto(fotoSeleccionada);
                 notifyDataSetChanged();
             }
-
         });
     }
 

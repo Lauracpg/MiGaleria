@@ -343,4 +343,13 @@ public class MainActivity extends AppCompatActivity {
             servicioConectado = false;
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (servicioConectado) {
+            unbindService(conexionServicio);
+            servicioConectado = false;
+        }
+    }
 }
